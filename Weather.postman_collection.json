@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "f4f68cb5-ce97-4c38-a8db-2083bc6f2ebb",
+		"name": "Weather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23270802"
+	},
+	"item": [
+		{
+			"name": "http://api.openweathermap.org/geo/1.0/direct?q=London&appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/direct?q=London&appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"direct"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London"
+						},
+						{
+							"key": "appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.openweathermap.org/geo/1.0/direct?q=London&%26appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/direct?q=London&%26appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"direct"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London"
+						},
+						{
+							"key": "%26appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.openweathermap.org/geo/1.0/zip?zip=E14,GB&appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/zip?zip=E14,GB&appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"zip"
+					],
+					"query": [
+						{
+							"key": "zip",
+							"value": "E14,GB"
+						},
+						{
+							"key": "appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://api.openweathermap.org/geo/1.0/reverse?lat=51,5098&lon=-0.1180&limit=5&appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/geo/1.0/reverse?lat=51,5098&lon=-0.1180&limit=5&appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"geo",
+						"1.0",
+						"reverse"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "51,5098"
+						},
+						{
+							"key": "lon",
+							"value": "-0.1180"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.openweathermap.org/data/2.5/weather?id=2172797&appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?id=2172797&appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2172797"
+						},
+						{
+							"key": "appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.&appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.&appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "57"
+						},
+						{
+							"key": "lon",
+							"value": "-2."
+						},
+						{
+							"key": "appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid=611fb3c9f43e4a650161a06a79a395da",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid=611fb3c9f43e4a650161a06a79a395da",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "57"
+						},
+						{
+							"key": "lon",
+							"value": "-2.15"
+						},
+						{
+							"key": "appid",
+							"value": "611fb3c9f43e4a650161a06a79a395da"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://api.openweathermap.org"
+		}
+	]
+}
