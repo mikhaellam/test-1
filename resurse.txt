@@ -1,0 +1,10 @@
+
+### 7. **Încărcarea pe GitHub**
+
+După ce ai finalizat implementarea, urmează acești pași pentru a-l încărca pe GitHub:
+
+1. **Inițializare Git**:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"

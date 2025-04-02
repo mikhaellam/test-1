@@ -1,0 +1,55 @@
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class GameServer {
+    private static final int PORT = 12345;
+    private static List<ObjectOutputStream> playerStreams = new ArrayList<>();
+    private static List<ObjectInputStream> playerInputs = new ArrayList<>();
+
+    public static void main(String[] args) {
+        System.out.println("Server started...");
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            while (true) {
+                Socket playerSocket = serverSocket.accept();
+                System.out.println("New player connected.");
+                ObjectOutputStream out = new ObjectOutputStream(playerSocket.getOutputStream());
+                ObjectInputStream in = new ObjectInputStream(playerSocket.getInputStream());
+                playerStreams.add(out);
+                playerInputs.add(in);
+
+                // Crearea unui thread pentru fiecare jucător
+                new Thread(new PlayerHandler(in, out)).start();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static class PlayerHandler implements Runnable {
+        private ObjectInputStream in;
+        private ObjectOutputStream out;
+
+        public PlayerHandler(ObjectInputStream in, ObjectOutputStream out) {
+            this.in = in;
+            this.out = out;
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (true) {
+                    String action = (String) in.readObject();
+                    System.out.println("Received action: " + action);
+                    // Aici poți procesa acțiunile și le poți trimite altor jucători
+                    for (ObjectOutputStream playerOut : playerStreams) {
+                        playerOut.writeObject(action);
+                        playerOut.flush();
+                    }
+                }
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}

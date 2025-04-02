@@ -1,0 +1,101 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.net.Socket;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+
+public class ColdWarGame extends JFrame {
+    private JPanel mapPanel;
+    private JLabel infoLabel;
+    private Map<String, MilitaryUnit> militaryUnits;
+    private Map<Point, MilitaryUnit> unitsOnMap;
+    private Socket socket;
+    private ObjectOutputStream out;
+    private ObjectInputStream in;
+
+    public ColdWarGame() {
+        setTitle("Cold War Strategy Game - 2D");
+        setSize(1000, 700);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        militaryUnits = new HashMap<>();
+        unitsOnMap = new HashMap<>();
+
+        // Inițializare unități militare
+        militaryUnits.put("USA Infantry", new MilitaryUnit("Infantry", 30, 20, 5, 200, "resources/infantry_image.png", new Point(450, 250)));
+        militaryUnits.put("USSR Tank", new MilitaryUnit("Tank", 80, 50, 3, 500, "resources/tank_image.png", new Point(500, 350)));
+
+        mapPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawString("Cold War Strategy", 400, 50);
+
+                // Desenează unitățile
+                for (Map.Entry<Point, MilitaryUnit> entry : unitsOnMap.entrySet()) {
+                    Point p = entry.getKey();
+                    g.drawImage(entry.getValue().icon.getImage(), p.x, p.y, null);
+                }
+            }
+        };
+
+        mapPanel.setBackground(Color.LIGHT_GRAY);
+        infoLabel = new JLabel("Select a country or unit.");
+        infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JButton diplomacyButton = new JButton("Diplomacy");
+        diplomacyButton.addActionListener(e -> openDiplomacyMenu());
+
+        JPanel topPanel = new JPanel();
+        topPanel.add(diplomacyButton);
+
+        setLayout(new BorderLayout());
+        add(mapPanel, BorderLayout.CENTER);
+        add(infoLabel, BorderLayout.SOUTH);
+        add(topPanel, BorderLayout.NORTH);
+
+        connectToServer("localhost", 12345); // Conectează-te la serverul de joc
+    }
+
+    private void connectToServer(String host, int port) {
+        try {
+            socket = new Socket(host, port);
+            out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
+            out.writeObject("Player Joined");
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openDiplomacyMenu() {
+        String[] options = {"Form Alliance", "Declare War", "Send Aid"};
+        String choice = (String) JOptionPane.showInputDialog(this, "Choose a diplomatic action:", "Diplomacy", JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+        if (choice != null) {
+            infoLabel.setText("Diplomatic action selected: " + choice);
+            sendDiplomacyAction(choice);
+        }
+    }
+
+    private void sendDiplomacyAction(String action) {
+        try {
+            out.writeObject(action); // Trimite acțiunea diplomatică la server
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            ColdWarGame game = new ColdWarGame();
+            game.setVisible(true);
+        });
+    }
+}

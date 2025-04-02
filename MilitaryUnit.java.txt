@@ -1,0 +1,43 @@
+import java.awt.*;
+import javax.swing.ImageIcon;
+
+public class MilitaryUnit {
+    String name;
+    int attackPower;
+    int defensePower;
+    int mobility;
+    int cost;
+    ImageIcon icon;
+    Point position;
+
+    public MilitaryUnit(String name, int attackPower, int defensePower, int mobility, int cost, String iconPath, Point position) {
+        this.name = name;
+        this.attackPower = attackPower;
+        this.defensePower = defensePower;
+        this.mobility = mobility;
+        this.cost = cost;
+        this.icon = new ImageIcon(iconPath);
+        this.position = position;
+    }
+
+    // Getter și Setters
+    public String getName() {
+        return name;
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+    public ImageIcon getIcon() {
+        return icon;
+    }
+
+    public void move(Point newPosition) {
+        this.position = newPosition;
+    }
+}
